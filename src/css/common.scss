@@ -1,0 +1,29 @@
+// 변수, mixin 모음 파일
+$mainColor: #588eea;
+$subColor: #737ac5;
+$black: #000;
+$white: #fff;
+$gray: #ccc;
+$red: #ec4141;
+$green: #4caf50;
+
+$grid1: 100%;
+$grid2: 50%;
+$grid3: 33.33%;
+$grid4: 25%;
+
+$w-100: 100%;
+
+@mixin flex($align, $justify, $direction, $wrap) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+}
+
+@mixin font($size, $weight, $lineHeight) {
+    font-size: $size;
+    font-weight: $weight;
+    line-height: $lineHeight;
+}
