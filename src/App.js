@@ -1,11 +1,11 @@
 import './css/reset.scss';
 import './css/layout.scss';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import Header from './component/header';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div className="wrap">
+      <Header></Header>
     </div>
   );
 }
