@@ -1,6 +1,6 @@
 // 변수, mixin 모음 파일
 $mainColor: #588eea;
-$subColor: #737ac5;
+$subColor: #d4d8ff;
 $black: #000;
 $white: #fff;
 $gray: #ccc;
@@ -26,4 +26,25 @@ $w-100: 100%;
     font-size: $size;
     font-weight: $weight;
     line-height: $lineHeight;
+}
+
+@mixin bg-img($size, $position, $repeat){
+    background-size: $size;
+    background-position: $position;
+    background-repeat: $repeat;
+}
+
+@mixin position-center() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin position-100() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
