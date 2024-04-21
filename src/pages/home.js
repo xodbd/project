@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
-function Home() {
+export default function Home() {
 
     return(
         <div className="home-wrap con-wrap">
@@ -9,5 +9,3 @@ function Home() {
         </div>
     );
 }
-
-export default Home;

@@ -4,7 +4,7 @@ import { SlMenu } from "react-icons/sl";
 import { VscClose } from "react-icons/vsc";
 import { useState } from 'react';
 
-function Header(props) {
+export default function Header(props) {
 
     return (
         <>
@@ -45,5 +45,3 @@ function Header(props) {
         </>
     );
 }
-
-export default Header;

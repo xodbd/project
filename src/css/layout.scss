@@ -31,7 +31,6 @@
         overflow: hidden;
         margin: 0 auto;
         position: relative;
-        box-shadow: 0 0 10px $gray;
     }
 }
 
@@ -59,6 +58,7 @@ header {
     left: 0;
     right: 0;
     z-index: 96;
+    box-shadow: 0 0 10px $gray;
 
     .inner {
         @include flex(center, space-between, row, nowrap);
@@ -139,12 +139,18 @@ footer {
 }
 
 .con-wrap {
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 165px);
     padding-top: 60px;
     background-color: #fff;
 }
 
-.error-404 {
+.error-404, .loading {
     @include flex(center, center, row, nowrap);
     @include font(30px, 700, 1);
+}
+
+.error-txt {
+    @include font(14px, 500, 1);
+    color: $red;
+    margin-top: 10px;
 }
