@@ -1,0 +1,72 @@
+.login-wrap, .join-wrap {
+    @include flex(center, center, column, wrap);
+    
+    .inner {
+        @include flex(center, center, column, wrap);
+    }
+
+    .title {
+        @include font(24px, 700, 1);
+        margin: 0 0 50px;
+    }
+    
+    .form-area {
+        @include flex(center, center, column, wrap);
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+
+        form {
+            width: 100%;
+        }
+
+        .form-group {
+            @include flex(center, center, row, nowrap);
+            width: 100%;
+            margin-bottom: 20px;
+
+            &:last-child {
+                margin-bottom: 0;
+
+                button {
+                    @include font(14px, 500, 1);
+                    padding: 15px 0;
+                    width: 100%;
+                    max-width: 500px;
+                    background: #fff;
+                    border: 1px solid $gray2;
+                    margin-top: 30px;
+                    cursor: pointer;
+                }
+            }
+
+            label {
+                @include font(14px, 500, 1);
+                width: 20%;
+            }
+    
+            input {
+                width: 80%;
+                height: 36px;
+                padding: 0 10px;
+                border: 0;
+                border-bottom: 1px solid $gray2;
+                box-sizing: border-box;
+                background: #f4f4f4;
+            }
+        }
+    }
+
+    .join-btn {
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
+
+        & a {
+            @include font(14px, 500, 1);
+            color: $gray2;
+            text-decoration: underline;
+            padding: 10px;
+        }
+    }
+}
