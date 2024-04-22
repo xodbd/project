@@ -3,8 +3,13 @@ import { SlUser } from "react-icons/sl";
 import { SlMenu } from "react-icons/sl";
 import { VscClose } from "react-icons/vsc";
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { auth } from '../firebase';
 
 export default function Header(props) {
+    const logOut = () => {
+        auth.signOut();
+    };
 
     return (
         <>
@@ -41,6 +46,7 @@ export default function Header(props) {
                         </li>
                     </ul>
                 </nav>
+                <p className='logout' onClick={()=>{logOut()}}>로그아웃</p>
             </div>
         </>
     );

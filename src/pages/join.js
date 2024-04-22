@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { FirebaseError } from "firebase/app";
 
 export default function Join(){
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ export default function Join(){
 
     const onSubmit = async(e) => {
         e.preventDefault();
+        setError("");
 
         if(isLoading || name === "" || email === "" || password === "") return;
 
@@ -25,9 +27,11 @@ export default function Join(){
             });
             navigate("/");
         } catch (err) {
-            console.error(err);
+            if(err instanceof FirebaseError) {
+                setError(err.message);
+            }
         } finally {
-
+            setIsLoading(false);
         }
 
         console.log(name, email, password);
