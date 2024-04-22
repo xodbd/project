@@ -26,6 +26,8 @@ function App() {
       setOpen(open == "" ? "on" : "")
   }
   
+  const user = auth.currentUser;
+  console.log(user);
 
   return (
     <div className="wrap">
