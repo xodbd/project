@@ -10,28 +10,45 @@ import Loading from './component/loading';
 import Home from './pages/home';
 import Login from './pages/login';
 import Join from './pages/join';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserName, login } from "./store";
 
 function App() {
+  let dispatch = useDispatch();
+
+  // 로그인
+  const [isLogin, setIsLogin] = useState(false);
+  const fbLogin = useSelector((state) => state.fbLogin);
+
+  // 유저
+  const [userName, setUserName] = useState("");
+
+  // 로딩
   const [isLoading, setIsLoading] = useState(true);
+
   const init = async() => {
     await auth.authStateReady();
     setIsLoading(false);
+    if(auth.currentUser == null) {
+      console.log("로그인 하삼");
+    } else {
+      setIsLogin(true);
+      setUserName(auth.currentUser.displayName);
+    }
   }
   useEffect(()=>{
     init();
   }, []);
 
+  // 사이드 내비
   const [open, setOpen] = useState("");
   const snbOpen = () => {
       setOpen(open == "" ? "on" : "")
   }
-  
-  const user = auth.currentUser;
-  console.log(user);
 
   return (
     <div className="wrap">
-      <Header open={open} snbOpen={snbOpen}></Header>
+      <Header open={open} snbOpen={snbOpen} isLogin={isLogin} userName={userName}></Header>
       <div className='contents'>
         {isLoading ? <Loading /> : (
           <Routes>
