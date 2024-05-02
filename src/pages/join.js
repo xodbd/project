@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { GithubAuthProvider, createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
@@ -37,6 +37,18 @@ export default function Join(){
         console.log(name, email, password);
     }
 
+    const onClick = async() => {
+        try {
+            const provider = new GithubAuthProvider();
+            await signInWithPopup(auth, provider);
+            navigate("/");
+        } catch (err) {
+            if(err instanceof FirebaseError) {
+                setError(err.message);
+            }
+        }
+    }
+
     return(
         <div className="join-wrap con-wrap">
             <div className="inner">
@@ -59,6 +71,9 @@ export default function Join(){
                             <button type="submit" value="Join">{isLoading ? "로딩 중.." : "회원가입"}</button>
                         </div>
                     </form>
+                    <div className="github-btn"
+                        onClick={onClick}
+                    >Github Login</div>
                     {error !== "" ? <p className="error-txt">{error}</p> : null}
                 </div>
             </div>

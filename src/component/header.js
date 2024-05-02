@@ -7,8 +7,11 @@ import { useSelector } from 'react-redux';
 import { auth } from '../firebase';
 
 export default function Header(props) {
+    const navigate = useNavigate();
     const logOut = () => {
         auth.signOut();
+        navigate("/");
+        props.snbOpen();
     };
 
     return (
@@ -24,13 +27,19 @@ export default function Header(props) {
                         <Link to={"/"}>R.House</Link>
                     </h1>
                     <div className='utility'>
-                        <Link to={"/login"}><SlUser className='icon'/></Link>
+                        <Link to={props.isLogin ? "/mypage" : "/login"}><SlUser className='icon'/></Link>
                     </div>
                 </div>
             </header>
             <div className={`snb-wrap ${props.open}`}>
                 <div className='snb-top'>
-                    <div><Link to={"/"}>김태융님</Link></div>
+                    <div>
+                        {
+                            props.isLogin
+                            ? (<Link to={"/"}>{props.userName}님</Link>)
+                            : (<Link to={"/login"}>로그인</Link>)
+                        }
+                    </div>
                     <div className='snb-close' onClick={props.snbOpen}><VscClose className='icon'/></div>
                 </div>
                 <nav>
@@ -46,7 +55,11 @@ export default function Header(props) {
                         </li>
                     </ul>
                 </nav>
-                <p className='logout' onClick={()=>{logOut()}}>로그아웃</p>
+                {
+                    props.isLogin
+                    ? (<p className='logout' onClick={()=>{logOut()}}>로그아웃</p>)
+                    : null
+                }
             </div>
         </>
     );

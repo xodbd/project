@@ -2,7 +2,7 @@ import { auth } from "../firebase";
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { GithubAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 export default function Join(){
     const navigate = useNavigate();
@@ -30,6 +30,18 @@ export default function Join(){
         }
     }
 
+    const onClick = async() => {
+        try {
+            const provider = new GithubAuthProvider();
+            await signInWithPopup(auth, provider);
+            navigate("/");
+        } catch (err) {
+            if(err instanceof FirebaseError) {
+                setError(err.message);
+            }
+        }
+    }
+
     return(
         <div className="login-wrap con-wrap">
             <div className="inner">
@@ -50,6 +62,9 @@ export default function Join(){
                     </form>
                     {error !== "" ? <p className="error-txt">{error}</p> : null}
                 </div>
+                <div className="github-btn"
+                    onClick={onClick}
+                >Github Login</div>
                 <div className="join-btn">
                     <Link to={"/join"}>회원가입</Link>
                 </div>

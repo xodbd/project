@@ -5,15 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import rhouse from './Rhouse.js'
+import store from './store.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <Provider rhouse={rhouse}>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  // </Provider>
+  </Provider>
 );
 
 reportWebVitals();
