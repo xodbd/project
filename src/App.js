@@ -10,6 +10,7 @@ import Loading from './component/loading';
 import Home from './pages/home';
 import Login from './pages/login';
 import Join from './pages/join';
+import Mypage from './pages/mypage';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserName, login } from "./store";
 
@@ -31,9 +32,11 @@ function App() {
     setIsLoading(false);
     if(auth.currentUser == null) {
       console.log("로그인 하삼");
+      console.log(auth.currentUser);
     } else {
       setIsLogin(true);
       setUserName(auth.currentUser.displayName);
+      console.log(auth.currentUser);
     }
   }
   useEffect(()=>{
@@ -55,6 +58,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/join" element={<Join />} />
+            <Route path="/mypage" element={<Mypage />} />
             <Route path="*" element={<div className='error-404 con-wrap'>404 Not Found</div>} />
           </Routes>
         )}

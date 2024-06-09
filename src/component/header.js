@@ -5,6 +5,7 @@ import { VscClose } from "react-icons/vsc";
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { auth } from '../firebase';
+import Cate from './cate';
 
 export default function Header(props) {
     const navigate = useNavigate();
@@ -43,17 +44,7 @@ export default function Header(props) {
                     <div className='snb-close' onClick={props.snbOpen}><VscClose className='icon'/></div>
                 </div>
                 <nav>
-                    <ul className='snb'>
-                        <li>
-                            <Link to={"/nfts"}>NFTs</Link>
-                        </li>
-                        <li>
-                            <Link to={"/game"}>GAME</Link>
-                        </li>
-                        <li>
-                            <Link to={"/guestbook"}>GUESTBOOK</Link>
-                        </li>
-                    </ul>
+                    <Cate/>
                 </nav>
                 {
                     props.isLogin
